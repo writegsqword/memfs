@@ -59,3 +59,5 @@ int File::truncate(off_t size) {
 File::File() {
     type = FiletypeEnum::FILE;
 }
+
+File::~File() {};

@@ -55,3 +55,5 @@ int Node::getattr(struct stat *stbuf)
 
     return -ENOENT;
 }
+
+Node::~Node() {};
