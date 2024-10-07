@@ -35,7 +35,7 @@ int File::write(const char *buf, size_t buf_size, off_t offset, struct fuse_file
     for (size_t i = 0; i < 16; i++)
     {
         size_t dst = i + offset;
-        content[i] = buf[i];
+        content[dst] = buf[i];
     }
     return buf_size;
 }
