@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace FS;
 
+
+
 Node* Node::_find_recurse(path_chunks_t& path_chunks) {
     //if no path chunks are left, then this is the file we are looking for
     if(path_chunks.size() == 0){
@@ -18,19 +20,18 @@ Node* Node::_find_recurse(path_chunks_t& path_chunks) {
     Node* next = _this->get_entry(path_chunks.front());
     if(next == nullptr)
         return next;
-    path_chunks.pop();
+    path_chunks.pop_front();
     return next->_find_recurse(path_chunks);
 }
+Node* Node::find_recurse_parent(const std::string& path) {
+    auto path_chunks = get_path_chunks(path);
+    path_chunks.pop_back();
+    return root->_find_recurse(path_chunks);
+}
 
-Node* Node::find_recurse(std::string& path){
-    auto path_chunks_v = string_split(path, "/");
-    path_chunks_t path_chunks;
-    for(std::string& s : path_chunks_v){
-        if(s.length() > 0)
-            path_chunks.push(s);
-
-    }
-    std::cerr << path_chunks.size() << "\n";
+Node* Node::find_recurse(const std::string& path){
+    
+    auto path_chunks = get_path_chunks(path);
     return root->_find_recurse(path_chunks);
 
 }

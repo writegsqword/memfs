@@ -17,3 +17,15 @@ inline std::vector<std::string> string_split(const std::string& s, std::string d
     res.push_back (s.substr (pos_start));
     return res;
 }
+
+
+inline path_chunks_t get_path_chunks(const std::string& path) {
+    auto path_chunks_v = string_split(path, "/");
+    path_chunks_t path_chunks;
+    for(std::string& s : path_chunks_v){
+        if(s.length() > 0)
+            path_chunks.push_front(s);
+    }
+    return path_chunks;
+
+}

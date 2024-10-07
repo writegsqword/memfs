@@ -27,22 +27,27 @@ namespace FS
     }
     class Node
     {
-        using path_chunks_t = std::queue<std::string>;
+        
     protected:
         FiletypeEnum::FileType type;
         int flags = 0;
         size_t fsize = 0;
-
+        
         Node* _find_recurse(path_chunks_t& path_chunks);
     public:
+        
         inline static Node *root;
         
-        static Node* find_recurse(std::string& path);
-
+        static Node* find_recurse(const std::string& path);
+        static Node* find_recurse_parent(const std::string& path);
+        inline bool isdir() { return type == FiletypeEnum::DIR; };
         virtual int getattr(struct stat *stbuf);
         virtual int read(char *buf, size_t size, off_t offset, struct fuse_file_info *fi) { return 0; };
         virtual int readdir(void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi) { return 0; };
         virtual int write(const char *buf, size_t size, off_t offset, struct fuse_file_info *fi) { return 0; };
+
+
+    
     };
 
 
