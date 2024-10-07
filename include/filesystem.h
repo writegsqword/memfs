@@ -45,7 +45,7 @@ namespace FS
         virtual int read(char *buf, size_t size, off_t offset, struct fuse_file_info *fi) { return 0; };
         virtual int readdir(void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi) { return 0; };
         virtual int write(const char *buf, size_t size, off_t offset, struct fuse_file_info *fi) { return 0; };
-
+        virtual ~Node();
 
     
     };
@@ -78,6 +78,6 @@ namespace FS
         int write(const char *buf, size_t size, off_t offset, struct fuse_file_info *fi);
         int truncate(off_t size);
         File();
-        //~File();
+        ~File();
     };
 }

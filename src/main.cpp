@@ -7,10 +7,6 @@
 #include "filesystem.h"
 #include "utils.h"
 
-static const char *filepath = "/file";
-static const char *filename = "file";
-static const char *filecontent = "I'm the content of the only file available there\n";
-
 #define NONNULL_GUARD(node)                       \
   if (node == nullptr)                            \
     return -ENOENT;
