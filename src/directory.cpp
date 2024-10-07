@@ -30,7 +30,13 @@ Node* Directory::get_entry(const std::string& name){
         return nullptr;
     return files.find(name)->second;
 }
-
+bool Directory::remove_entry(const std::string& name){
+    //i hope the compiler optimizes this cuz im lazy
+    if(files.find(name) == files.end())
+        return 0;
+    files.erase(name);
+    return 1;
+}
 int Directory::getattr(struct stat *stbuf)
 {
     memset(stbuf, 0, sizeof(struct stat));
@@ -44,4 +50,10 @@ int Directory::getattr(struct stat *stbuf)
 
 Directory::Directory() {
     type = FiletypeEnum::DIR;
+}
+
+Directory::~Directory() {
+    for(auto& kv : files) {
+        delete kv.second;
+    }
 }

@@ -51,6 +51,11 @@ int File::getattr(struct stat *stbuf)
 
 }
 
+int File::truncate(off_t size) {
+    content.resize(size);
+    return size;
+}
+
 File::File() {
     type = FiletypeEnum::FILE;
 }

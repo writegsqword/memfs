@@ -61,8 +61,10 @@ namespace FS
         int getattr(struct stat *stbuf);
         int readdir(void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi);
         int addentry(const std::string& name, Node *node);
+        bool remove_entry(const std::string& name);
         Node* get_entry(const std::string& name);
         Directory();
+        ~Directory();
     };
 
 
@@ -74,6 +76,8 @@ namespace FS
         int read(char *buf, size_t size, off_t offset,struct fuse_file_info *fi);
 
         int write(const char *buf, size_t size, off_t offset, struct fuse_file_info *fi);
+        int truncate(off_t size);
         File();
+        //~File();
     };
 }
